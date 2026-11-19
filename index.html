@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f1e8" />
+    <title>Taylor the Turtle Prototype</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #f3f1e8;
+      }
+
+      #game-frame {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      #load-error {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        color: #960606;
+        font: 700 1.2rem/1.5 "Trebuchet MS", sans-serif;
+        text-align: center;
+      }
+
+      #load-error[hidden] {
+        display: none;
+      }
+
+      #home-button {
+        position: fixed;
+        z-index: 1;
+        right: max(1rem, env(safe-area-inset-right));
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        min-width: 5rem;
+        min-height: 3rem;
+        padding: 0.6rem 1rem;
+        border: 2px solid #a70b0b;
+        border-radius: 0.8rem;
+        color: #a70b0b;
+        background: #fffef5;
+        font: 800 1rem/1 "Trebuchet MS", sans-serif;
+        cursor: pointer;
+      }
+
+      #home-button:hover,
+      #home-button:focus-visible {
+        color: #fffef5;
+        background: #a70b0b;
+      }
+
+      #home-button:focus-visible {
+        outline: 3px solid #4ca2c7;
+        outline-offset: 3px;
+      }
+
+      #home-button[hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="game-frame" title="Taylor the Turtle Prototype game menu"></iframe>
+    <button id="home-button" type="button" hidden>HOME</button>
+    <div id="load-error" role="status" hidden></div>
+    <script>
+      const frame = document.getElementById("game-frame");
+      const homeButton = document.getElementById("home-button");
+      const loadError = document.getElementById("load-error");
+      const siteRoot = new URL("./", window.location.href);
+      const games = {
+        safety: { slug: "safety-check", name: "Safety Check" },
+        stick: { slug: "stick-and-fix", name: "Stick and Fix" },
+        dress: { slug: "dress-up", name: "Dress Up" },
+        clean: { slug: "clean-up", name: "Clean Up" },
+        morning: { slug: "morning-cleanse", name: "Morning Cleanse" },
+      };
+      let appsBasePathPromise;
+
+      async function findAppsBasePath() {
+        for (const basePath of ["apps/", "dist/apps/"]) {
+          const response = await fetch(new URL(`${basePath}opening/`, siteRoot));
+          if (!response.ok) continue;
+
+          const page = await response.text();
+          if (page.includes('id="root"')) return basePath;
+        }
+
+        throw new Error("Built game apps were not found in apps/ or dist/apps/.");
+      }
+
+      function getAppsBasePath() {
+        appsBasePathPromise ??= findAppsBasePath();
+        return appsBasePathPromise;
+      }
+
+      async function showMenu() {
+        homeButton.hidden = true;
+        try {
+          const basePath = await getAppsBasePath();
+          frame.src = new URL(`${basePath}opening/`, siteRoot).href;
+          frame.title = "Taylor the Turtle Prototype game menu";
+          frame.hidden = false;
+          loadError.hidden = true;
+        } catch (error) {
+          console.error("Could not load the game menu.", error);
+          frame.hidden = true;
+          loadError.textContent =
+            "The game files could not be found. Build the apps with the GitHub Pages workflow, then reload this page.";
+          loadError.hidden = false;
+        }
+      }
+
+      homeButton.addEventListener("click", showMenu);
+      window.addEventListener("message", async (event) => {
+        if (event.origin !== window.location.origin || event.source !== frame.contentWindow) {
+          return;
+        }
+
+        const message = event.data;
+        if (
+          message?.type !== "launch-game" ||
+          typeof message.gameId !== "string" ||
+          !Object.hasOwn(games, message.gameId)
+        ) {
+          return;
+        }
+
+        const game = games[message.gameId];
+        try {
+          const basePath = await getAppsBasePath();
+          frame.src = new URL(`${basePath}${game.slug}/`, siteRoot).href;
+          frame.title = `${game.name} game`;
+          frame.hidden = false;
+          loadError.hidden = true;
+          homeButton.hidden = false;
+        } catch (error) {
+          console.error(`Could not load ${game.name}.`, error);
+          frame.hidden = true;
+          loadError.textContent = `The ${game.name} game could not be loaded. Build the apps with the GitHub Pages workflow, then reload this page.`;
+          loadError.hidden = false;
+          homeButton.hidden = false;
+        }
+      });
+
+      showMenu();
+    </script>
+  </body>
+</html>

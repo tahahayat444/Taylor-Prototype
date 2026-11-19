@@ -2,7 +2,7 @@ import { useState } from "react";
 
 type Item = "sock" | "helmet" | "apple";
 
-const asset = (name: string) => `/assets/${name}.svg`;
+const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.svg`;
 
 const items: Array<{ id: Item; label: string }> = [
   { id: "sock", label: "sock" },

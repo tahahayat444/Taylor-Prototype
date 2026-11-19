@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const HOLD_DURATION = 5000;
-const ASSETS = "/assets";
+const ASSETS = `${import.meta.env.BASE_URL}assets`;
 
 type GameId = "safety" | "stick" | "dress" | "clean" | "morning";
 
@@ -150,28 +150,13 @@ function GameArt({ game }: { game: Game }) {
   );
 }
 
-function TitleScreen({ onPlay, onParents }: { onPlay: () => void; onParents: () => void }) {
-  return (
-    <main className="title-screen">
-      <h1>SAFE AND SOUND</h1>
-      <img className="title-turtle" src={`${ASSETS}/e38b2.svg`} alt="A friendly green turtle" />
-      <div className="title-actions">
-        <button className="play-button" onClick={onPlay}>
-          LET&apos;S PLAY!
-        </button>
-        <HoldButton
-          className="title-parents-button"
-          label="Go to For Parents"
-          onComplete={onParents}
-        >
-          FOR PARENTS
-        </HoldButton>
-      </div>
-    </main>
-  );
-}
-
-function OpeningScreen({ onOpenParents }: { onOpenParents: () => void }) {
+function OpeningScreen({
+  onOpenParents,
+  onSelectGame,
+}: {
+  onOpenParents: () => void;
+  onSelectGame: (gameId: GameId) => void;
+}) {
   return (
     <main className="opening-screen">
       <HoldButton className="menu-trigger" label="Open parent menu" onComplete={onOpenParents}>
@@ -180,9 +165,15 @@ function OpeningScreen({ onOpenParents }: { onOpenParents: () => void }) {
       </HoldButton>
       <section className="opening-games" aria-label="Games">
         {games.map((game) => (
-          <div className={`opening-card opening-${game.id}`} key={game.id}>
+          <button
+            className={`opening-card opening-${game.id}`}
+            key={game.id}
+            type="button"
+            aria-label={`Play ${game.label}`}
+            onClick={() => onSelectGame(game.id)}
+          >
             <GameArt game={game} />
-          </div>
+          </button>
         ))}
       </section>
     </main>
@@ -293,13 +284,9 @@ function AboutPage({
 }
 
 export default function App() {
-  const [screen, setScreen] = useState<"title" | "opening" | "about">("title");
+  const [screen, setScreen] = useState<"opening" | "about">("opening");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<GameId | null>(null);
-
-  if (screen === "title") {
-    return <TitleScreen onPlay={() => setScreen("opening")} onParents={() => setScreen("about")} />;
-  }
 
   if (screen === "about") {
     return (
@@ -317,7 +304,14 @@ export default function App() {
 
   return (
     <>
-      <OpeningScreen onOpenParents={() => setDrawerOpen(true)} />
+      <OpeningScreen
+        onOpenParents={() => setDrawerOpen(true)}
+        onSelectGame={(gameId) => {
+          if (window.parent !== window) {
+            window.parent.postMessage({ type: "launch-game", gameId }, window.location.origin);
+          }
+        }}
+      />
       <ParentDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}

@@ -180,7 +180,13 @@
   position: absolute;
   width: clamp(190px, 23vw, 320px);
   aspect-ratio: 1.05;
+  padding: 0;
   animation: game-wiggle 2.8s ease-in-out infinite alternate;
+}
+
+.opening-card:focus-visible {
+  outline: 5px solid #4ca2c7;
+  outline-offset: 6px;
 }
 
 .opening-safety {

@@ -11,10 +11,10 @@ type ClothingItem = {
   wornClassName: string;
 };
 
-const asset = (name: string) => `/assets/frame32/${name}.svg`;
-const alignmentAsset = (name: string) => `/assets/alignment/${name}.svg`;
-const group89Asset = (name: string) => `/assets/group89/${name}.svg`;
-const openingAsset = (name: string) => `/assets/opening/${name}.svg`;
+const asset = (name: string) => `${import.meta.env.BASE_URL}assets/frame32/${name}.svg`;
+const alignmentAsset = (name: string) => `${import.meta.env.BASE_URL}assets/alignment/${name}.svg`;
+const group89Asset = (name: string) => `${import.meta.env.BASE_URL}assets/group89/${name}.svg`;
+const openingAsset = (name: string) => `${import.meta.env.BASE_URL}assets/opening/${name}.svg`;
 
 function OpeningScreen({ onStart }: { onStart: () => void }) {
   return (

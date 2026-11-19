@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const TOTAL_TAPS = 12
-const assetPath = '/assets'
+const assetPath = `${import.meta.env.BASE_URL}assets`
 
 type GameState = 'start' | 'ready' | 'riding' | 'fallen' | 'treatment'
 

@@ -5,21 +5,22 @@ type Point = {
   y: number;
 };
 
-const TOOTHBRUSH = "/assets/game/toothbrush.png";
-const BUBBLES = "/assets/game/bubbles.png";
-const CHARACTER = "/assets/35b6f.svg";
-const BODY_LINE_VERTICAL = "/assets/3b235.svg";
-const BODY_LINE_HORIZONTAL = "/assets/72128.svg";
-const OPENING_TURTLE_SHADOW = "/assets/646ce.svg";
-const OPENING_TURTLE = "/assets/a1809.svg";
-const OPENING_BRUSH_SHADOW = "/assets/d119e.svg";
-const OPENING_BRUSH = "/assets/243f1.png";
-const OPENING_BUBBLES = "/assets/81aa1.svg";
+const ASSETS = `${import.meta.env.BASE_URL}assets`;
+const TOOTHBRUSH = `${ASSETS}/game/toothbrush.png`;
+const BUBBLES = `${ASSETS}/game/bubbles.png`;
+const CHARACTER = `${ASSETS}/35b6f.svg`;
+const BODY_LINE_VERTICAL = `${ASSETS}/3b235.svg`;
+const BODY_LINE_HORIZONTAL = `${ASSETS}/72128.svg`;
+const OPENING_TURTLE_SHADOW = `${ASSETS}/646ce.svg`;
+const OPENING_TURTLE = `${ASSETS}/a1809.svg`;
+const OPENING_BRUSH_SHADOW = `${ASSETS}/d119e.svg`;
+const OPENING_BRUSH = `${ASSETS}/243f1.png`;
+const OPENING_BUBBLES = `${ASSETS}/81aa1.svg`;
 const TEETH_STATES = [
-  "/assets/6b0e1.svg",
-  "/assets/1bc0b.svg",
-  "/assets/2dd09.svg",
-  "/assets/6fd38.svg",
+  `${ASSETS}/6b0e1.svg`,
+  `${ASSETS}/1bc0b.svg`,
+  `${ASSETS}/2dd09.svg`,
+  `${ASSETS}/6fd38.svg`,
 ];
 
 export default function App() {
