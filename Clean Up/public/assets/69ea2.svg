@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="265.969" height="440.349" viewBox="0 0 265.969 440.349" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Phone">
+<g id="Rectangle 449" filter="url(#filter0_d_0_33)">
+<rect width="196.643" height="410.755" rx="34.219" transform="matrix(0.983846 -0.179014 0.17651 0.984299 0 35.2019)" fill="#2A2A2A"/>
+</g>
+<rect id="Rectangle 450" width="175.684" height="390.89" rx="23.0787" transform="matrix(0.983846 -0.179014 0.17651 0.984299 11.3936 44.0252)" fill="#444444" fill-opacity="0.2"/>
+<ellipse id="Ellipse" cx="5.20153" cy="5.47337" rx="5.20153" ry="5.47337" transform="matrix(0.983846 -0.179014 0.17651 0.984299 94.8623 38.8494)" fill="#161616"/>
+</g>
+<defs>
+<filter id="filter0_d_0_33" x="3.65036" y="5.56724" width="258.669" height="434.782" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4.56254"/>
+<feGaussianBlur stdDeviation="0.923148"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_33"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_33" result="shape"/>
+</filter>
+</defs>
+</svg>

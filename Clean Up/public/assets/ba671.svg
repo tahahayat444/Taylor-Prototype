@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="251.735" height="362.813" viewBox="0 0 251.735 362.813" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lego red unsorted" filter="url(#filter0_d_0_4)">
+<rect id="Rectangle 263" x="48.3711" y="3.87374" width="192.451" height="313.863" fill="#F27575"/>
+<ellipse id="Ellipse 72" cx="134.905" cy="232.49" rx="58.1228" ry="55.5396" fill="#CE4B4B"/>
+<ellipse id="Ellipse 73" cx="138.784" cy="92.9955" rx="58.1228" ry="55.5396" fill="#CE4B4B"/>
+<ellipse id="Ellipse 71" cx="155.579" cy="232.49" rx="58.1228" ry="55.5396" fill="#E55050"/>
+<ellipse id="Ellipse 70" cx="155.579" cy="92.9955" rx="58.1228" ry="55.5396" fill="#E55050"/>
+<rect id="Rectangle 264" x="10.9125" y="3.87374" width="37.4569" height="313.863" fill="#D75C5C"/>
+<rect id="Rectangle 265" x="10.9125" width="229.908" height="3.87485" fill="#BF4C4C"/>
+<path id="Rectangle 267" d="M10.9125 316.445H240.821L222.738 340.986H10.9125V316.445Z" fill="#D75C5C"/>
+<path id="Rectangle 269" d="M10.9157 340.988L12.8532 340.988L49.6642 316.447L48.4003 316.433L48.3932 315.791L10.9157 339.696L10.9157 340.988Z" fill="#A15050"/>
+</g>
+<defs>
+<filter id="filter0_d_0_4" x="2.38419e-07" y="0" width="251.735" height="362.813" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10.9125"/>
+<feGaussianBlur stdDeviation="5.45627"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_4"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_4" result="shape"/>
+</filter>
+</defs>
+</svg>

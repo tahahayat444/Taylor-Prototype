@@ -1,0 +1,731 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #f3f1e8;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.game-shell {
+  display: grid;
+  width: 100vw;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  background: #f3f1e8;
+}
+
+.opening-stage {
+  position: relative;
+  width: min(100vw, 133.398dvh);
+  aspect-ratio: 1366 / 1024;
+  overflow: hidden;
+  container-type: size;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0 12.207%,
+      rgb(224 213 134 / 15%) 12.207% 18.359%,
+      transparent 18.359% 33.984%,
+      rgb(224 213 134 / 15%) 33.984% 40.234%,
+      transparent 40.234% 58.398%,
+      rgb(224 213 134 / 15%) 58.398% 64.551%,
+      transparent 64.551% 82.617%,
+      rgb(224 213 134 / 15%) 82.617% 88.867%,
+      transparent 88.867%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 1.465%,
+      rgb(224 213 134 / 15%) 1.465% 6.079%,
+      transparent 6.079% 9.297%
+    ),
+    #f3f1e8;
+}
+
+.opening-title {
+  position: absolute;
+  z-index: 3;
+  top: 12.59%;
+  left: 19.05%;
+  display: flex;
+  width: 61.2%;
+  height: 26.17%;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: #a70b0b;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 13.177cqw;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.395cqw;
+  line-height: 0.791;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.opening-turtle-motion,
+.opening-shirt-motion {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.opening-turtle-motion {
+  transform-origin: 20.7% 61.3%;
+  animation: turtle-wiggle 2.8s ease-in-out infinite;
+}
+
+.opening-shirt-motion {
+  transform-origin: 73.5% 56%;
+  animation: shirt-wiggle 2.15s ease-in-out 180ms infinite;
+}
+
+.opening-turtle-shadow,
+.opening-turtle,
+.opening-shirt-card,
+.opening-shirt {
+  position: absolute;
+  display: grid;
+  place-items: center;
+}
+
+.opening-turtle-shadow {
+  top: 33.581%;
+  left: 4.157%;
+  width: 28.079%;
+  height: 54.648%;
+}
+
+.opening-turtle-shadow img {
+  width: 81.335%;
+  height: 92.695%;
+  transform: rotate(-8.54deg);
+}
+
+.opening-turtle {
+  top: 34.251%;
+  left: 7.222%;
+  width: 26.924%;
+  height: 52.809%;
+}
+
+.opening-turtle img {
+  width: 81.163%;
+  height: 92.774%;
+  transform: rotate(-8.54deg);
+}
+
+.opening-shirt-card {
+  top: 40.723%;
+  left: 60.835%;
+  width: 26.428%;
+  height: 31.152%;
+}
+
+.opening-shirt-card img {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0.53deg);
+}
+
+.opening-shirt {
+  top: 39.935%;
+  left: 59.384%;
+  width: 28.223%;
+  height: 31.919%;
+}
+
+.opening-shirt img {
+  width: 86.653%;
+  height: 77.551%;
+  transform: rotate(14.02deg);
+}
+
+.start-button {
+  position: absolute;
+  z-index: 4;
+  top: 75.782%;
+  left: 37.335%;
+  display: flex;
+  width: 24.231%;
+  height: 9.375%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 0.22cqw solid #a70b0b;
+  border-radius: 1.098cqw;
+  background: #fffef5;
+  color: #a70b0b;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 3.514cqw;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.105cqw;
+  line-height: 1;
+  text-align: center;
+  transform: rotate(0.53deg);
+  transition:
+    color 140ms ease,
+    background-color 140ms ease,
+    transform 140ms ease;
+  touch-action: manipulation;
+}
+
+.start-button:hover {
+  background: #a70b0b;
+  color: #fffef5;
+}
+
+.start-button:active {
+  transform: rotate(0.53deg) scale(0.97);
+}
+
+.start-button:focus-visible {
+  outline: 0.35cqw solid rgb(76 162 199 / 75%);
+  outline-offset: 0.35cqw;
+}
+
+@keyframes turtle-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  30% {
+    transform: rotate(-1.5deg) translateY(-0.35%);
+  }
+
+  70% {
+    transform: rotate(1.5deg) translateY(0.25%);
+  }
+}
+
+@keyframes shirt-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  35% {
+    transform: rotate(2.1deg) scale(1.015);
+  }
+
+  72% {
+    transform: rotate(-1.8deg) scale(0.995);
+  }
+}
+
+.game-stage {
+  position: relative;
+  width: min(100vw, 133.01dvh);
+  aspect-ratio: 1370 / 1030;
+  overflow: hidden;
+  background: #f3f1e8;
+  user-select: none;
+}
+
+.striped-wall {
+  position: absolute;
+  inset: 0 50.15% 16.7% 0;
+  background:
+    repeating-linear-gradient(90deg, rgb(224 213 134 / 15%) 0 4.23%, transparent 4.23% 8.46%),
+    #f3f1e8;
+}
+
+.floor {
+  position: absolute;
+  inset: 83.3% 0 0;
+  background: #d9d9d9;
+}
+
+.wardrobe-panel {
+  position: absolute;
+  inset: 0 0 0 49.85%;
+  background: #f3f1e8;
+}
+
+.shelf {
+  position: absolute;
+  left: 12.55%;
+  top: 11.84%;
+  width: 58.25%;
+  height: 1.65%;
+  background: #8c6240;
+}
+
+.box {
+  position: absolute;
+}
+
+.box-coral {
+  left: 16.35%;
+  top: 4.56%;
+  width: 11.02%;
+  height: 7.28%;
+  background: #c9786b;
+}
+
+.box-purple {
+  left: 26.17%;
+  top: 9.23%;
+  width: 7.79%;
+  height: 4.02%;
+  background: #906dc2;
+}
+
+.box-blue {
+  left: 37.88%;
+  top: 5.83%;
+  width: 9.12%;
+  height: 6.02%;
+  background: #4ca2c7;
+}
+
+.clothes-rail {
+  position: absolute;
+  left: 31.61%;
+  top: 20.58%;
+  width: 68.39%;
+  height: 0.49%;
+  background: #886e55;
+}
+
+.clothes-rail::before,
+.clothes-rail::after {
+  position: absolute;
+  top: -11px;
+  width: 6px;
+  height: 27px;
+  background: #886e55;
+  content: "";
+}
+
+.clothes-rail::before {
+  left: -6px;
+}
+
+.clothes-rail::after {
+  left: 73.7%;
+}
+
+.character {
+  position: absolute;
+  z-index: 2;
+  left: 3.285%;
+  top: 18.738%;
+  width: 41.453%;
+  height: 73.796%;
+}
+
+.character img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.leg-items,
+.worn-items {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.leg-items {
+  z-index: 3;
+}
+
+.shell-foreground {
+  position: absolute;
+  z-index: 4;
+  left: 3.285%;
+  top: 18.738%;
+  width: 41.453%;
+  height: 73.796%;
+  clip-path: ellipse(21.05% 19.16% at 49.75% 56.48%);
+  pointer-events: none;
+}
+
+.shell-foreground img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.worn-items {
+  z-index: 5;
+}
+
+.worn-item {
+  position: absolute;
+  display: block;
+  animation: dress-item-in 180ms ease-out;
+}
+
+.worn-blue-shirt {
+  left: 10.25%;
+  top: 46.8%;
+  width: 27%;
+  height: 27.5%;
+}
+
+.worn-purple-sweater {
+  left: 7.54%;
+  top: 45.96%;
+  width: 32.73%;
+  height: 30.45%;
+}
+
+.worn-pants {
+  left: 17.67%;
+  top: 70.16%;
+  width: 12.33%;
+  height: 14.92%;
+}
+
+.worn-shorts {
+  left: 17.75%;
+  top: 72.15%;
+  width: 12.3%;
+  height: 11.1%;
+}
+
+.worn-skirt {
+  left: 15.25%;
+  top: 67.25%;
+  width: 17.15%;
+  height: 15.9%;
+}
+
+.worn-dress {
+  left: 12.35%;
+  top: 45.25%;
+  width: 23.5%;
+  height: 34.8%;
+}
+
+.worn-beanie {
+  left: 14.38%;
+  top: 10.2%;
+  width: 19.2%;
+  height: 18.3%;
+}
+
+.worn-top-hat {
+  left: 15.58%;
+  top: 4.2%;
+  width: 16.8%;
+  height: 24%;
+}
+
+.worn-socks {
+  left: 13.71%;
+  top: 79.44%;
+  width: 19.4%;
+  height: 14.12%;
+}
+
+.worn-socks img {
+  position: absolute;
+  top: 0;
+  width: 47.82%;
+  height: 100%;
+}
+
+.worn-socks img:first-child {
+  left: 0;
+}
+
+.worn-socks img:last-child {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.worn-black-shoes {
+  left: 14.88%;
+  top: 78.84%;
+  width: 18.48%;
+  height: 13.75%;
+}
+
+.worn-black-shoes,
+.worn-socks img {
+  object-fit: fill;
+}
+
+.worn-glasses {
+  left: 14.98%;
+  top: 27.18%;
+  width: 18.25%;
+  height: 7.05%;
+}
+
+.clothing-picker {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+}
+
+.clothing-item {
+  position: absolute;
+  display: grid;
+  cursor: pointer;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  transition:
+    filter 140ms ease,
+    transform 140ms ease;
+  touch-action: manipulation;
+}
+
+.clothing-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sweater-art {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sweater-body {
+  position: absolute;
+  left: 2.188%;
+  top: 8.61%;
+  display: block;
+  width: 95.536%;
+  height: 91.39%;
+}
+
+.sweater-collar {
+  position: absolute;
+  left: 38.205%;
+  top: 0;
+  width: 25.204%;
+  height: 8.61%;
+  overflow: hidden;
+  background: #7f5db0;
+}
+
+.sweater-collar img {
+  position: absolute;
+  top: 11.46%;
+  left: 4.64%;
+  width: 90.92%;
+  height: 78.32%;
+}
+
+.sweater-cuff {
+  position: absolute;
+  overflow: visible;
+}
+
+.sweater-cuff::before,
+.sweater-cuff img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  content: "";
+}
+
+.sweater-cuff-left {
+  top: 54.967%;
+  left: 0;
+  width: 10.642%;
+  height: 17.722%;
+}
+
+.sweater-cuff-left::before {
+  width: 117.65%;
+  height: 29.61%;
+  background: #7f5db0;
+  transform: translate(-50%, -50%) rotate(-129.1deg);
+}
+
+.sweater-cuff-left img {
+  width: 109.07%;
+  height: 24.74%;
+  transform: translate(-50%, -50%) rotate(-129.1deg);
+}
+
+.sweater-cuff-right {
+  top: 49.007%;
+  left: 88.826%;
+  width: 11.153%;
+  height: 22.866%;
+}
+
+.sweater-cuff-right::before {
+  width: 139.43%;
+  height: 25.28%;
+  background: #7f5db0;
+  transform: translate(-50%, -50%) rotate(120.01deg);
+}
+
+.sweater-cuff-right img {
+  width: 128.3%;
+  height: 20.79%;
+  transform: translate(-50%, -50%) rotate(120.01deg);
+}
+
+.clothing-item:hover {
+  filter: drop-shadow(0 5px 5px rgb(69 53 39 / 20%));
+  transform: translateY(-2px);
+}
+
+.clothing-item:active {
+  transform: scale(0.96);
+}
+
+.clothing-item:focus-visible {
+  border-radius: 10px;
+  outline: 4px solid rgb(76 162 199 / 65%);
+  outline-offset: 6px;
+}
+
+.clothing-item[aria-pressed="true"] {
+  filter: drop-shadow(0 4px 4px rgb(69 53 39 / 24%));
+}
+
+.item-blue-shirt {
+  left: 55.999%;
+  top: 7.821%;
+  width: 15.61%;
+  height: 15.751%;
+}
+
+.item-purple-sweater {
+  left: 77.758%;
+  top: 6.952%;
+  width: 18.106%;
+  height: 16.234%;
+}
+
+.item-pants {
+  left: 56.405%;
+  top: 32.154%;
+  width: 10.108%;
+  height: 13.253%;
+}
+
+.item-shorts {
+  left: 70.721%;
+  top: 34.87%;
+  width: 10.108%;
+  height: 8.728%;
+}
+
+.item-skirt {
+  left: 84.714%;
+  top: 33.023%;
+  width: 12.033%;
+  height: 11.637%;
+}
+
+.item-dress {
+  left: 55.435%;
+  top: 52.903%;
+  width: 13.426%;
+  height: 20.422%;
+}
+
+.item-beanie {
+  left: 71.773%;
+  top: 58.769%;
+  width: 10.029%;
+  height: 9.668%;
+}
+
+.item-top-hat {
+  left: 86.007%;
+  top: 59.204%;
+  width: 10.191%;
+  height: 12.275%;
+}
+
+.item-socks {
+  left: 56.971%;
+  top: 82.559%;
+  width: 10.41%;
+  height: 7.308%;
+}
+
+.sock-pair {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.sock-pair img {
+  width: 47%;
+}
+
+.sock-pair img:last-child {
+  transform: scaleX(-1);
+}
+
+.item-black-shoes {
+  left: 72.662%;
+  top: 84.188%;
+  width: 10.181%;
+  height: 5.974%;
+}
+
+.item-glasses {
+  left: 86.817%;
+  top: 85.275%;
+  width: 9.908%;
+  height: 3.841%;
+}
+
+@keyframes dress-item-in {
+  from {
+    opacity: 0.25;
+    transform: scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-turtle-motion,
+  .opening-shirt-motion {
+    animation: none;
+  }
+
+  .worn-item {
+    animation: none;
+  }
+
+  .clothing-item {
+    transition: none;
+  }
+}

@@ -1,0 +1,619 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Archivo Narrow:Regular";
+  src: url("https://static.figma.com/font/ArchivoNarrow_wght__3") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+
+:root {
+  color: #960606;
+  background: #f3f1e8;
+  font-family: "Super Joyful Fallback", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-synthesis: none;
+}
+
+@layer base {
+  body {
+    min-width: 320px;
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.title-screen,
+.opening-screen,
+.about-page {
+  min-height: 100dvh;
+  background-color: #f3f1e8;
+}
+
+.title-screen,
+.opening-screen {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 6.4%, rgb(224 213 134 / 15%) 6.4% 12.5%),
+    repeating-linear-gradient(0deg, transparent 0 22%, rgb(224 213 134 / 15%) 22% 28%);
+}
+
+.title-screen h1 {
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%) rotate(0.25deg);
+  color: #a70b0b;
+  font-size: clamp(3.25rem, 8.7vw, 9rem);
+  line-height: 0.791;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.title-turtle {
+  position: absolute;
+  bottom: -22%;
+  left: 4%;
+  width: auto;
+  height: 50%;
+}
+
+.title-actions {
+  position: absolute;
+  z-index: 3;
+  top: 51%;
+  left: 50%;
+  display: flex;
+  width: min(48rem, 58vw);
+  transform: translateX(-50%);
+  align-items: center;
+  flex-direction: column;
+  gap: clamp(2rem, 5vh, 3.5rem);
+}
+
+.play-button {
+  width: 100%;
+  min-height: clamp(6.5rem, 14vh, 9rem);
+  transform: rotate(0.53deg);
+  border: clamp(4px, 0.4vw, 6px) solid #a70b0b;
+  border-radius: clamp(1rem, 2vw, 2.25rem);
+  color: #a70b0b;
+  background: #fffef5;
+  font-size: clamp(2.6rem, 6.5vw, 7rem);
+  letter-spacing: 0.03em;
+}
+
+.title-parents-button {
+  width: min(62%, 27rem);
+  min-height: clamp(4.5rem, 10vh, 6.5rem);
+  border: clamp(3px, 0.3vw, 5px) solid #a70b0b;
+  border-radius: clamp(0.9rem, 1.7vw, 2rem);
+  color: #e6d7c8;
+  background: #960606;
+  font-size: clamp(1.5rem, 3.25vw, 3.5rem);
+  letter-spacing: 0.03em;
+}
+
+.hold-button {
+  position: relative;
+  user-select: none;
+  touch-action: none;
+  -webkit-user-select: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.menu-trigger {
+  position: fixed;
+  z-index: 10;
+  top: clamp(1.25rem, 4vw, 2.75rem);
+  right: clamp(1.25rem, 4vw, 3rem);
+  display: grid;
+  width: clamp(4rem, 7vw, 6.25rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: transparent;
+  overflow: hidden;
+}
+
+.menu-trigger img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.menu-icon-base {
+  z-index: 0;
+}
+
+.menu-icon-fill {
+  z-index: 1;
+  clip-path: inset(calc(100% - var(--hold-fill, 0%)) 0 0);
+}
+
+.opening-games {
+  width: min(94vw, 1380px);
+  min-height: 100dvh;
+  margin: auto;
+  padding: clamp(6rem, 12vh, 8rem) 0 4rem;
+}
+
+.opening-card,
+.about-game,
+.detail-game {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: clamp(4px, 0.45vw, 6px) solid #a70b0b;
+  border-radius: 48% 52% 45% 55% / 51% 45% 55% 49%;
+  color: #a70b0b;
+  background: #f3f1e8;
+  transform: rotate(3deg);
+}
+
+.opening-card {
+  position: absolute;
+  width: clamp(190px, 23vw, 320px);
+  aspect-ratio: 1.05;
+  animation: game-wiggle 2.8s ease-in-out infinite alternate;
+}
+
+.opening-safety {
+  top: 21%;
+  left: 7%;
+  animation-delay: -0.4s;
+}
+
+.opening-stick {
+  top: 14%;
+  left: 38%;
+  animation-delay: -1.7s;
+}
+
+.opening-dress {
+  top: 21%;
+  right: 7%;
+  animation-delay: -0.9s;
+}
+
+.opening-clean {
+  bottom: 7%;
+  left: 21%;
+  animation-delay: -2.2s;
+}
+
+.opening-morning {
+  right: 21%;
+  bottom: 6%;
+  animation-delay: -1.3s;
+}
+
+@keyframes game-wiggle {
+  0% {
+    transform: rotate(-2deg) translateY(-4px);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(3px);
+  }
+
+  100% {
+    transform: rotate(-1deg) translateY(-2px);
+  }
+}
+
+.game-art {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  display: block;
+  width: 60%;
+  height: 48%;
+  object-fit: contain;
+}
+
+.game-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.stick-art {
+  transform: rotate(-8deg);
+}
+
+.clean-art img:first-child {
+  transform: rotate(-46deg);
+}
+
+.clean-art img:last-child {
+  transform: rotate(134deg) scaleY(-1);
+}
+
+.morning-art img:first-child {
+  top: 24%;
+  height: 55%;
+  transform: rotate(-14deg);
+}
+
+.morning-art img:last-child {
+  top: -10%;
+  left: 35%;
+  width: 55%;
+  height: 65%;
+}
+
+.game-label {
+  position: absolute;
+  right: 8%;
+  bottom: 10%;
+  left: 8%;
+  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  line-height: 0.85;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.drawer-layer {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  visibility: hidden;
+  transition: visibility 300ms;
+}
+
+.drawer-layer.open {
+  visibility: visible;
+}
+
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgb(0 0 0 / 63%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.drawer-layer.open .drawer-scrim {
+  opacity: 1;
+}
+
+.parent-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(30rem, 40vw);
+  height: 100%;
+  padding: 2.5rem 2rem;
+  transform: translateX(100%);
+  background: #f3f1e8;
+  transition: transform 300ms ease-out;
+  isolation: isolate;
+}
+
+.drawer-layer.open .parent-drawer {
+  transform: translateX(0);
+}
+
+.parent-drawer-fill {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--drawer-fill, 0%);
+  background: #a70b0b;
+  pointer-events: none;
+}
+
+.drawer-close {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 2.5rem;
+  margin-left: auto;
+}
+
+.drawer-close img {
+  width: 100%;
+}
+
+.parents-button {
+  z-index: 2;
+  display: grid;
+  width: 100%;
+  min-height: 4.8rem;
+  margin-top: 2.7rem;
+  place-items: center;
+  border: 3px solid #a70b0b;
+  border-radius: 15px;
+  color: #e6d7c8;
+  background: #960606;
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  letter-spacing: 0.03em;
+}
+
+.parent-drawer.is-filling .parents-button {
+  border-color: transparent;
+  background: transparent;
+}
+
+.hold-instruction {
+  margin-top: 1rem;
+  font-family: "Archivo Narrow:Regular", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.about-page {
+  box-sizing: border-box;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 7vw, 4rem) 5rem;
+}
+
+.about-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  letter-spacing: 0.03em;
+}
+
+.home-button {
+  display: grid;
+  place-items: center;
+  color: #960606;
+}
+
+.home-button img {
+  width: clamp(2.5rem, 5vw, 4rem);
+  height: 4rem;
+}
+
+.home-button span {
+  margin-top: 0.2rem;
+  font-size: clamp(0.85rem, 2vw, 1.5rem);
+}
+
+.about-intro {
+  margin-top: clamp(2rem, 6vw, 4rem);
+}
+
+.about-intro h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.03em;
+}
+
+.about-intro p,
+.detail-copy {
+  margin-top: 1.1rem;
+  font-family: "Archivo Narrow:Regular", sans-serif;
+  font-size: clamp(1.2rem, 2.8vw, 2.25rem);
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+}
+
+.game-info {
+  margin-top: clamp(4rem, 10vw, 7rem);
+}
+
+.game-info h2 {
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  letter-spacing: 0.03em;
+}
+
+.about-game-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem 2.5rem;
+  margin-top: 4rem;
+}
+
+.about-game {
+  min-height: 11rem;
+  aspect-ratio: 1.6;
+  grid-column: span 2;
+}
+
+.about-game:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.about-game:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.about-game .game-label {
+  right: 5%;
+  bottom: 35%;
+  left: 55%;
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+
+.about-game .game-art {
+  top: 18%;
+  left: 8%;
+  width: 45%;
+  height: 62%;
+}
+
+.game-detail {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.75fr) 1.75fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  margin-top: 4rem;
+  align-items: center;
+}
+
+.detail-game {
+  width: min(100%, 22rem);
+  aspect-ratio: 1;
+}
+
+.detail-game .game-label {
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 0 2rem;
+  color: #a70b0b;
+  font-size: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.back-button img {
+  width: clamp(2.5rem, 5vw, 4rem);
+  transform: rotate(-90deg);
+}
+
+.detail-copy {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .title-screen {
+    min-height: 100svh;
+  }
+
+  .title-screen h1 {
+    top: 18%;
+    font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  .title-turtle {
+    bottom: -12%;
+    left: -3%;
+    height: 38%;
+  }
+
+  .title-actions {
+    top: 40%;
+    width: min(76vw, 32rem);
+  }
+
+  .play-button {
+    min-height: 6rem;
+    font-size: clamp(2.2rem, 9vw, 4rem);
+  }
+
+  .title-parents-button {
+    width: 72%;
+    min-height: 4.5rem;
+  }
+
+  .opening-screen {
+    min-height: 100svh;
+    overflow-y: auto;
+  }
+
+  .opening-games {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding-top: 7rem;
+  }
+
+  .opening-card {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    animation-duration: 3.2s;
+  }
+
+  .opening-card:last-child {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+  }
+
+  .parent-drawer {
+    width: min(88vw, 25rem);
+  }
+
+  .about-game-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-game,
+  .about-game:nth-child(4),
+  .about-game:nth-child(5) {
+    grid-column: auto;
+  }
+
+  .about-game:last-child {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+  }
+
+  .game-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-left {
+    width: min(80%, 22rem);
+    margin: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .opening-games {
+    width: 82vw;
+    grid-template-columns: 1fr;
+  }
+
+  .opening-card:last-child {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .about-game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-game:last-child {
+    grid-column: auto;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-card {
+    animation: none;
+  }
+
+  .parent-drawer,
+  .drawer-scrim {
+    transition: none;
+  }
+}

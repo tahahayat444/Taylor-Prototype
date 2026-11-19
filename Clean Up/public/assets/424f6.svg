@@ -1,0 +1,25 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="306.477" height="393.92" viewBox="0 0 306.477 393.92" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="lego red 2" filter="url(#filter0_d_0_66)">
+<rect id="Rectangle 270" x="105.274" y="10.2012" width="192.451" height="313.863" transform="rotate(9.81141 105.274 10.2012)" fill="#F27575"/>
+<ellipse id="Ellipse 74" cx="151.59" cy="250.219" rx="58.1228" ry="55.5396" transform="rotate(9.81141 151.59 250.219)" fill="#CE4B4B"/>
+<ellipse id="Ellipse 75" cx="179.181" cy="113.426" rx="58.1228" ry="55.5396" transform="rotate(9.81141 179.181 113.426)" fill="#CE4B4B"/>
+<ellipse id="Ellipse 76" cx="171.955" cy="253.741" rx="58.1228" ry="55.5396" transform="rotate(9.81141 171.955 253.741)" fill="#E55050"/>
+<ellipse id="Ellipse 77" cx="195.721" cy="116.288" rx="58.1228" ry="55.5396" transform="rotate(9.81141 195.721 116.288)" fill="#E55050"/>
+<rect id="Rectangle 271" x="68.3588" y="3.81779" width="37.4569" height="313.863" transform="rotate(9.81141 68.3588 3.81779)" fill="#D75C5C"/>
+<rect id="Rectangle 272" x="69.0195" width="229.908" height="3.87485" transform="rotate(9.81141 69.0195 0)" fill="#BF4C4C"/>
+<path id="Rectangle 273" d="M15.0963 311.817L241.642 350.995L219.642 372.095L10.9144 335.999L15.0963 311.817Z" fill="#D75C5C"/>
+<path id="Rectangle 274" d="M10.9125 335.999L12.8217 336.33L53.2762 318.421L52.0332 318.191L52.1356 317.557L11.1327 334.727L10.9125 335.999Z" fill="#A15050"/>
+</g>
+<defs>
+<filter id="filter0_d_0_66" x="-1.19209e-07" y="0" width="306.477" height="393.92" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10.9125"/>
+<feGaussianBlur stdDeviation="5.45627"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_66"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_66" result="shape"/>
+</filter>
+</defs>
+</svg>

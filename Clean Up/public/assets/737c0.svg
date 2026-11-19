@@ -1,0 +1,31 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="92.7436" height="478.058" viewBox="0 0 92.7436 478.058" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Green marker" filter="url(#filter0_d_0_37)">
+<rect id="Rectangle 375" width="54.6251" height="326.779" rx="27.3126" transform="matrix(-0.999969 0.0078431 0.0078431 0.999969 70.7725 129.248)" fill="#696969"/>
+<rect id="Rectangle 376" width="58.2136" height="17.3807" rx="8.69034" transform="matrix(-0.994145 -0.108057 -0.108057 0.994145 73.3337 134.833)" fill="#A39595"/>
+<rect id="Rectangle 377" width="48.9973" height="326.779" rx="24.4987" transform="matrix(-0.999969 0.0078431 0.0078431 0.999969 69.5801 127.921)" fill="#8A8A8A"/>
+<rect id="Rectangle 378" width="50.09" height="326.779" rx="25.045" transform="matrix(-0.999969 0.0078431 0.0078431 0.999969 66.4535 128.226)" fill="#AEAEAE"/>
+<rect id="Rectangle 379" width="57.6413" height="9.27923" rx="4.63962" transform="matrix(-0.994145 -0.108057 -0.108057 0.994145 72.5649 142.006)" fill="#8A8484"/>
+<rect id="Rectangle 380" width="63.4002" height="145.551" rx="27.2813" transform="matrix(-0.99937 -0.0354824 -0.0354824 0.99937 82.7815 2.24967)" fill="#389311"/>
+<rect id="Rectangle 381" width="42.3775" height="326.779" rx="21.1888" transform="matrix(-0.999969 0.0078431 0.0078431 0.999969 57.9286 125.673)" fill="#D9D9D9"/>
+<rect id="Rectangle 382" width="63.5789" height="144.454" rx="27.2813" transform="matrix(-0.99937 -0.0354824 -0.0354824 0.99937 78.6265 2.58314)" fill="#82D25F"/>
+<rect id="Rectangle 383" width="3.88681" height="144.105" transform="matrix(-0.99937 -0.0354824 -0.0354824 0.99937 68.961 2.41311)" fill="#389311"/>
+<rect id="Rectangle 384" width="3.88681" height="144.636" transform="matrix(-0.99937 -0.0354824 -0.0354824 0.99937 56.2548 1.82473)" fill="#389311"/>
+<rect id="Rectangle 385" width="3.88681" height="144.169" transform="matrix(-0.99937 -0.0354824 -0.0354824 0.99937 44.0429 1.44532)" fill="#389311"/>
+<path id="Rectangle 386" d="M32.699 0.7088L28.6261 1.26047L24.0799 144.385L27.4055 145.18L32.699 0.7088Z" fill="#389311"/>
+<path id="Rectangle 387" d="M70.4666 147.13L14.8883 142.744L15.9912 145.779L70.3381 150.377L70.4666 147.13Z" fill="#524A4A"/>
+<path id="Rectangle 388" d="M73.622 143.328L72.9831 142.413C70.8478 145.42 68.9534 146.495 66.3566 147.181L68.8102 150.517L71.1506 150.607L73.622 143.328Z" fill="#524A4A"/>
+<path id="Rectangle 389" d="M17.4897 140.139L15.3988 138.039C15.2553 138.342 14.5215 138.34 14.8824 142.743L23.8609 145.514L27.1776 144.582L17.4897 140.139Z" fill="#524A4A"/>
+</g>
+<defs>
+<filter id="filter0_d_0_37" x="-4.17233e-07" y="0.7088" width="92.7436" height="477.349" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10.9125"/>
+<feGaussianBlur stdDeviation="5.45627"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_37"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_37" result="shape"/>
+</filter>
+</defs>
+</svg>
