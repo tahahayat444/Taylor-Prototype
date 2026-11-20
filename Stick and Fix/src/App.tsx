@@ -33,6 +33,30 @@ function GrassSymbol({ className }: { className: string }) {
   )
 }
 
+function StartScreen({ onStart }: { onStart: () => void }) {
+  return (
+    <section className="start-screen" aria-labelledby="stick-and-fix-title">
+      <h1 className="opening-title" id="stick-and-fix-title">
+        STICK AND
+        <br />
+        FIX
+      </h1>
+
+      <div className="opening-taylor-motion" aria-hidden="true">
+        <img src={`${assetPath}/opening-taylor.svg`} alt="" draggable={false} />
+      </div>
+
+      <div className="opening-bandage-motion" aria-hidden="true">
+        <img src={`${assetPath}/opening-bandage.svg`} alt="" draggable={false} />
+      </div>
+
+      <button className="start-button" type="button" onClick={onStart}>
+        START
+      </button>
+    </section>
+  )
+}
+
 type GameState = 'start' | 'ready' | 'riding' | 'fallen' | 'treatment'
 
 type PlacedBandage = {
@@ -115,8 +139,7 @@ export default function App() {
     ])
   }
 
-  function startGame(event: React.MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation()
+  function startGame() {
     setTaps(0)
     setGameState('ready')
   }
@@ -153,18 +176,24 @@ export default function App() {
 
   const riderAsset = taps % 2 === 0 ? '64c23.svg' : 'bba61.svg'
 
+  if (gameState === 'start') {
+    return (
+      <main className="game">
+        <StartScreen onStart={startGame} />
+      </main>
+    )
+  }
+
   return (
     <main
       className="game"
       onClick={handleGameTap}
       onKeyDown={handleKeyDown}
-      role={gameState === 'start' || gameState === 'fallen' ? undefined : 'button'}
-      tabIndex={gameState === 'start' || gameState === 'fallen' ? -1 : 0}
+      role={gameState === 'fallen' ? undefined : 'button'}
+      tabIndex={gameState === 'fallen' ? -1 : 0}
       aria-label={
-        gameState === 'start'
-          ? 'Taylor bike game start screen.'
-          : gameState === 'treatment'
-            ? 'Tap anywhere to place a bandage on Taylor.'
+        gameState === 'treatment'
+          ? 'Tap anywhere to place a bandage on Taylor.'
           : gameState === 'fallen'
           ? 'Taylor has fallen. Select BandAid to help him.'
           : 'Tap to help Taylor ride forward.'
@@ -177,51 +206,7 @@ export default function App() {
         draggable={false}
       />
 
-      {gameState === 'start' && (
-        <section className="start-screen" aria-label="Bike game start screen">
-          <div className="start-stage">
-            <img
-              className="start-background"
-              src={`${assetPath}/831b5.svg`}
-              alt=""
-              draggable={false}
-            />
-            <img
-              className="start-cloud"
-              src={`${assetPath}/898b3.svg`}
-              alt=""
-              draggable={false}
-            />
-            <div className="start-taylor" aria-hidden="true">
-              <img src={`${assetPath}/f299d.svg`} alt="" draggable={false} />
-              <span className="start-mouth-mask" />
-              <img
-                className="start-mouth"
-                src={`${assetPath}/2c8d2.svg`}
-                alt=""
-                draggable={false}
-              />
-            </div>
-            <img
-              className="start-bike"
-              src={`${assetPath}/084bb.svg`}
-              alt=""
-              draggable={false}
-            />
-            <img
-              className="start-bandaid"
-              src={`${assetPath}/2575e.svg`}
-              alt=""
-              draggable={false}
-            />
-            <button className="start-button" type="button" onClick={startGame}>
-              START
-            </button>
-          </div>
-        </section>
-      )}
-
-      {gameState !== 'start' && gameState !== 'treatment' && (
+      {gameState !== 'treatment' && (
         <header className="game-header">
           <button
             className="menu-sign"

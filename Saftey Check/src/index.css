@@ -11,6 +11,10 @@
     min-width: 320px;
     min-height: 100dvh;
     overflow: hidden;
+    background-color: #f3f1e8;
+    background-image: linear-gradient(90deg, rgba(224, 213, 134, 0.15) 50%, transparent 50%);
+    background-size: min(9.5357vw, 13.0935dvh) 100%;
+    background-position-x: calc(50% + min(2.398vw, 3.293dvh));
   }
 
   button {
@@ -19,23 +23,28 @@
 }
 
 #root {
-  min-height: 100dvh;
+  display: grid;
+  width: 100%;
+  height: 100dvh;
+  place-items: center;
 }
 
 .start-screen,
 .game-screen {
   position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.start-screen {
   width: 100%;
   height: 100dvh;
   min-height: 480px;
-  overflow: hidden;
-  background-color: #f3f1e8;
-  background-image:
-    linear-gradient(rgba(224, 213, 134, 0.15) 50%, transparent 50%),
-    linear-gradient(90deg, rgba(224, 213, 134, 0.15) 50%, transparent 50%);
-  background-size:
-    100% 31.25%,
-    8.9% 100%;
+}
+
+.game-screen {
+  width: min(100vw, 137.31dvh);
+  height: min(100dvh, 72.83vw);
 }
 
 .start-screen h1 {
@@ -148,7 +157,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 117.2%;
+  height: auto;
   pointer-events: none;
 }
 
@@ -185,6 +194,7 @@
 .choice img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
   pointer-events: none;
 }
 
@@ -194,10 +204,6 @@
   width: 23%;
   height: 24%;
   animation-delay: -0.2s;
-}
-
-.choice-sock img {
-  object-fit: fill;
 }
 
 .choice-helmet {
@@ -236,7 +242,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 123%;
+  height: auto;
   pointer-events: none;
 }
 
@@ -247,7 +253,7 @@
   left: 41.1%;
   width: 18%;
   height: 25%;
-  object-fit: fill;
+  object-fit: contain;
   pointer-events: none;
 }
 
@@ -396,12 +402,6 @@
     bottom: 14%;
   }
 
-  .game-screen {
-    min-width: 680px;
-    left: 50%;
-    width: 133.33vh;
-    transform: translateX(-50%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

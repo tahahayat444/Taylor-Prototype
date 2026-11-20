@@ -186,29 +186,43 @@ export default function App() {
   const renderWornItem = (item: ClothingItem) => {
     if (item.id === "socks") {
       return (
-        <div key={item.id} className={`worn-item ${item.wornClassName}`}>
+        <button
+          key={item.id}
+          type="button"
+          className={`worn-item worn-item-button ${item.wornClassName}`}
+          onClick={() => toggleItem(item)}
+          aria-label={`Remove ${item.label}`}
+        >
           <img src={group89Asset("6371d")} alt="" />
           <img src={group89Asset("6592e")} alt="" />
-        </div>
+        </button>
       );
     }
 
     if (item.id === "purple-sweater") {
       return (
-        <div key={item.id} className={`worn-item ${item.wornClassName}`}>
+        <button
+          key={item.id}
+          type="button"
+          className={`worn-item worn-item-button ${item.wornClassName}`}
+          onClick={() => toggleItem(item)}
+          aria-label={`Remove ${item.label}`}
+        >
           <SweaterArt />
-        </div>
+        </button>
       );
     }
 
     return (
-      <img
+      <button
         key={item.id}
-        className={`worn-item ${item.wornClassName}`}
-        src={item.asset}
-        alt=""
-        draggable={false}
-      />
+        type="button"
+        className={`worn-item worn-item-button ${item.wornClassName}`}
+        onClick={() => toggleItem(item)}
+        aria-label={`Remove ${item.label}`}
+      >
+        <img src={item.asset} alt="" draggable={false} />
+      </button>
     );
   };
 
@@ -238,7 +252,7 @@ export default function App() {
           <img src={asset("cda10")} alt="A green turtle character" draggable={false} />
         </div>
 
-        <div className="leg-items" aria-hidden="true">
+        <div className="leg-items">
           {legItems.map(renderWornItem)}
         </div>
 
@@ -246,7 +260,7 @@ export default function App() {
           <img src={asset("cda10")} alt="" draggable={false} />
         </div>
 
-        <div className="worn-items" aria-hidden="true">
+        <div className="worn-items">
           {frontItems.map(renderWornItem)}
         </div>
 

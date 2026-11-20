@@ -377,6 +377,29 @@
   animation: dress-item-in 180ms ease-out;
 }
 
+.worn-item-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.worn-item-button > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.worn-item-button:focus-visible {
+  border-radius: 4px;
+  outline: clamp(2px, 0.3vw, 5px) solid rgb(76 162 199 / 65%);
+  outline-offset: 3px;
+}
+
 .worn-blue-shirt {
   left: 10.25%;
   top: 46.8%;
@@ -479,11 +502,13 @@
   position: absolute;
   z-index: 7;
   inset: 0;
+  pointer-events: none;
 }
 
 .clothing-item {
   position: absolute;
   display: grid;
+  pointer-events: auto;
   cursor: pointer;
   place-items: center;
   border: 0;

@@ -90,6 +90,69 @@
         morning: { slug: "morning-cleanse", name: "Morning Cleanse" },
       };
       let appsBasePathPromise;
+      let buttonAudioContext;
+
+      function playButtonBloop() {
+        const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextConstructor) {
+          console.error("Web Audio is unavailable; button sounds cannot play.");
+          return;
+        }
+
+        buttonAudioContext ??= new AudioContextConstructor();
+
+        function playTone() {
+          const now = buttonAudioContext.currentTime;
+          const oscillator = buttonAudioContext.createOscillator();
+          const volume = buttonAudioContext.createGain();
+
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(640, now);
+          oscillator.frequency.exponentialRampToValueAtTime(360, now + 0.12);
+          volume.gain.setValueAtTime(0.0001, now);
+          volume.gain.exponentialRampToValueAtTime(0.12, now + 0.012);
+          volume.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
+
+          oscillator.connect(volume);
+          volume.connect(buttonAudioContext.destination);
+          oscillator.start(now);
+          oscillator.stop(now + 0.16);
+        }
+
+        if (buttonAudioContext.state === "suspended") {
+          buttonAudioContext.resume().then(playTone).catch((error) => {
+            console.error("Could not resume button sound playback.", error);
+          });
+        } else {
+          playTone();
+        }
+      }
+
+      function addButtonSoundListener(targetDocument) {
+        targetDocument.addEventListener(
+          "click",
+          (event) => {
+            const target = event.target;
+            if (
+              !target ||
+              typeof target.closest !== "function" ||
+              !target.closest("button, [role='button']")
+            ) {
+              return;
+            }
+
+            playButtonBloop();
+          },
+          true,
+        );
+      }
+
+      addButtonSoundListener(document);
+      frame.addEventListener("load", () => {
+        if (frame.contentDocument) {
+          addButtonSoundListener(frame.contentDocument);
+        }
+      });
 
       async function findAppsBasePath() {
         for (const basePath of ["apps/", "dist/apps/"]) {
