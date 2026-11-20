@@ -19,6 +19,28 @@ type SortableObject = {
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.svg`;
 
+function StartScreen({ onStart }: { onStart: () => void }) {
+  return (
+    <section className="start-screen" aria-labelledby="clean-up-title">
+      <h1 className="opening-title" id="clean-up-title">
+        CLEAN UP
+      </h1>
+
+      <div className="opening-turtle-motion" aria-hidden="true">
+        <img src={asset("opening-turtle")} alt="" draggable={false} />
+      </div>
+
+      <div className="opening-pens-motion" aria-hidden="true">
+        <img src={asset("opening-pens")} alt="" draggable={false} />
+      </div>
+
+      <button className="start-button" type="button" onClick={onStart}>
+        START
+      </button>
+    </section>
+  );
+}
+
 const objects: SortableObject[] = [
   {
     id: "blue-book",
@@ -95,6 +117,7 @@ const objects: SortableObject[] = [
 ];
 
 export default function App() {
+  const [started, setStarted] = useState(false);
   const [sortedIds, setSortedIds] = useState<string[]>([]);
   const [phoneWiggling, setPhoneWiggling] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -110,6 +133,14 @@ export default function App() {
     setPhoneWiggling(false);
     setMenuOpen(false);
   };
+
+  if (!started) {
+    return (
+      <main className="game-shell">
+        <StartScreen onStart={() => setStarted(true)} />
+      </main>
+    );
+  }
 
   return (
     <main className="game-shell">

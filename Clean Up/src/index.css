@@ -34,6 +34,119 @@
   background: #f0edd9;
 }
 
+.start-screen {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 480px;
+  overflow: hidden;
+  background-color: #f3f1e8;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 6.1%,
+      rgb(224 213 134 / 15%) 6.1% 10.8%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 18.2%,
+      rgb(224 213 134 / 15%) 18.2% 24.5%
+    );
+}
+
+.opening-title {
+  position: absolute;
+  z-index: 3;
+  top: 17%;
+  left: 50%;
+  margin: 0;
+  color: #a70b0b;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: clamp(3rem, 11vw, 7.6rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  line-height: 0.9;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.opening-turtle-motion,
+.opening-pens-motion {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.opening-turtle-motion {
+  top: 35%;
+  left: 7%;
+  width: clamp(215px, 26vw, 298px);
+  aspect-ratio: 298.499 / 501.706;
+  animation: opening-turtle-float 2.8s ease-in-out infinite;
+}
+
+.opening-turtle-motion img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 0.55rem #fffef5);
+  object-fit: fill;
+}
+
+.opening-pens-motion {
+  top: 32%;
+  right: 7%;
+  width: clamp(180px, 18.5vw, 245px);
+  height: clamp(300px, 49vh, 380px);
+  animation: opening-pens-float 2.2s ease-in-out 180ms infinite;
+}
+
+.opening-pens-motion img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.start-button {
+  position: absolute;
+  z-index: 4;
+  top: 75.5%;
+  left: 50%;
+  display: grid;
+  width: clamp(180px, 24.6%, 260px);
+  height: clamp(60px, 10%, 80px);
+  place-items: center;
+  border: clamp(2px, 0.3vw, 3px) solid #a70b0b;
+  border-radius: clamp(10px, 1.5vw, 16px);
+  color: #a70b0b;
+  background: #fffef5;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.25rem, 3.2vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    transform 140ms ease,
+    background-color 140ms ease,
+    color 140ms ease;
+  touch-action: manipulation;
+}
+
+.start-button:hover {
+  color: #fffef5;
+  background: #a70b0b;
+}
+
+.start-button:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+.start-button:focus-visible {
+  outline: 4px solid rgb(76 162 199 / 70%);
+  outline-offset: 4px;
+}
+
 .game-stage {
   position: relative;
   width: min(100vw, calc(100dvh * 4 / 3));
@@ -302,7 +415,42 @@
   }
 }
 
+@keyframes opening-turtle-float {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  35% {
+    transform: rotate(-1.5deg) translateY(-0.45%);
+  }
+
+  70% {
+    transform: rotate(1.5deg) translateY(0.3%);
+  }
+}
+
+@keyframes opening-pens-float {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  35% {
+    transform: rotate(2deg) translateY(-0.55%);
+  }
+
+  72% {
+    transform: rotate(-1.8deg) translateY(0.4%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .opening-turtle-motion,
+  .opening-pens-motion {
+    animation: none;
+  }
+
   .sortable-object {
     transition: none;
   }

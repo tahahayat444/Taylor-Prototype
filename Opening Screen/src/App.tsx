@@ -160,8 +160,8 @@ function OpeningScreen({
   return (
     <main className="opening-screen">
       <HoldButton className="menu-trigger" label="Open parent menu" onComplete={onOpenParents}>
-        <img className="menu-icon-base" src={`${ASSETS}/b8b0b.svg`} alt="" />
-        <img className="menu-icon-fill" src={`${ASSETS}/655bb.svg`} alt="" />
+        <img className="menu-icon-base" src={`${ASSETS}/b8b0b.svg`} alt="" draggable={false} />
+        <img className="menu-icon-fill" src={`${ASSETS}/655bb.svg`} alt="" draggable={false} />
       </HoldButton>
       <section className="opening-games" aria-label="Games">
         {games.map((game) => (
