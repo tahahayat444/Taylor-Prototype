@@ -6,6 +6,14 @@
     <meta name="theme-color" content="#f3f1e8" />
     <title>Taylor the Turtle Prototype</title>
     <style>
+      @font-face {
+        font-family: "Nunito";
+        src: url("./fonts/nunito-latin-variable.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400 900;
+        font-display: swap;
+      }
+
       * {
         box-sizing: border-box;
       }
@@ -17,6 +25,7 @@
         margin: 0;
         overflow: hidden;
         background: #f3f1e8;
+        font-family: "Nunito", sans-serif;
       }
 
       #game-frame {
@@ -33,7 +42,7 @@
         place-items: center;
         padding: 2rem;
         color: #960606;
-        font: 700 1.2rem/1.5 "Trebuchet MS", sans-serif;
+        font: 700 1.2rem/1.5 "Nunito", sans-serif;
         text-align: center;
       }
 
@@ -53,7 +62,7 @@
         border-radius: 0.8rem;
         color: #a70b0b;
         background: #fffef5;
-        font: 800 1rem/1 "Trebuchet MS", sans-serif;
+        font: 800 1rem/1 "Nunito", sans-serif;
         cursor: pointer;
       }
 

@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Archivo Narrow:Regular";
-  src: url("https://static.figma.com/font/ArchivoNarrow_wght__3") format("woff2");
+  font-family: "Nunito";
+  src: url("../../fonts/nunito-latin-variable.woff2") format("woff2");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 900;
+  font-display: swap;
 }
 
 :root {
   color: #960606;
   background: #f3f1e8;
-  font-family: "Super Joyful Fallback", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-synthesis: none;
 }
 
@@ -290,6 +291,10 @@
   letter-spacing: 0.03em;
 }
 
+.opening-screen .game-label {
+  font-weight: 800;
+}
+
 .drawer-layer {
   position: fixed;
   z-index: 20;
@@ -377,7 +382,7 @@
 
 .hold-instruction {
   margin-top: 1rem;
-  font-family: "Archivo Narrow:Regular", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
   text-align: center;
   letter-spacing: 0.08em;
@@ -424,7 +429,7 @@
 .about-intro p,
 .detail-copy {
   margin-top: 1.1rem;
-  font-family: "Archivo Narrow:Regular", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: clamp(1.2rem, 2.8vw, 2.25rem);
   line-height: 1.25;
   letter-spacing: 0.03em;

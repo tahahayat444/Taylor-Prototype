@@ -1,16 +1,18 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Cal Sans:Regular';
-  src: url('https://static.figma.com/font/CalSans-Regular_1') format('woff2');
+  font-family: 'Nunito';
+  src: url('../../fonts/nunito-latin-variable.woff2') format('woff2');
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400 900;
+  font-display: swap;
 }
 
 @layer base {
   :root {
     font-family:
-      ui-rounded, 'Arial Rounded MT Bold', 'Trebuchet MS', system-ui, sans-serif;
+      'Nunito', sans-serif;
+    font-synthesis: none;
     color: #173222;
     background: #66c7ec;
   }
@@ -89,7 +91,7 @@
   width: 75%;
   margin: 0;
   color: #a70b0b;
-  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: clamp(3rem, 10.5vw, 7.6rem);
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -172,7 +174,7 @@
   border-radius: clamp(10px, 1.5vw, 16px);
   color: #a70b0b;
   background: #fffef5;
-  font-family: 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: clamp(1.25rem, 3.2vw, 2.4rem);
   font-weight: 900;
   letter-spacing: 0.03em;
@@ -356,7 +358,7 @@
   background: #e53e3e;
   box-shadow: 0 8px 0 rgb(118 24 24 / 18%);
   transform: translateX(-50%);
-  font-family: 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: clamp(2.2rem, 7.8vw, 7rem);
   font-style: normal;
   font-weight: 900;
@@ -499,7 +501,7 @@
   color: white;
   background: #f24747;
   translate: -50% -50%;
-  font-family: 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 5.7cqw;
   font-style: normal;
   font-weight: 900;

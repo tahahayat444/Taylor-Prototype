@@ -28,7 +28,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Build all game apps
         run: |
-          mkdir -p dist/apps
+          mkdir -p dist/apps dist/fonts
 
           build_app() {
             app_dir="$1"
@@ -37,6 +37,7 @@ jobs:
               cd "$app_dir"
               pnpm install --frozen-lockfile
               pnpm exec vite build --base=./ --outDir="../dist/apps/$app_slug" --emptyOutDir
+              cp ../fonts/OFL.txt "../dist/apps/$app_slug/OFL.txt"
             )
           }
 
@@ -47,6 +48,7 @@ jobs:
           build_app "Clean Up" clean-up
           build_app "Morning Clense" morning-cleanse
 
+          cp fonts/nunito-latin-variable.woff2 fonts/OFL.txt dist/fonts/
           cp index.html dist/index.html
       - uses: actions/upload-pages-artifact@v3
         with:

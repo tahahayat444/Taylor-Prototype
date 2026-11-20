@@ -1,6 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Nunito";
+  src: url("../../fonts/nunito-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
 @layer base {
+  :root {
+    font-family: "Nunito", sans-serif;
+    font-synthesis: none;
+  }
+
   html,
   body,
   #root {
@@ -49,7 +62,7 @@
   left: 50%;
   margin: 0;
   color: #a70b0b;
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: clamp(64px, 10vw, 110px);
   font-weight: 900;
   line-height: 0.94;
@@ -144,7 +157,7 @@
   color: #a70b0b;
   background: #fffef5;
   box-shadow: 0 5px 0 rgba(167, 11, 11, 0.1);
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: clamp(32px, 3.5vw, 42px);
   font-weight: 900;
   line-height: 1;
