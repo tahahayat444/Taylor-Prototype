@@ -2,6 +2,36 @@ import { useEffect, useState } from 'react'
 
 const TOTAL_TAPS = 12
 const assetPath = `${import.meta.env.BASE_URL}assets`
+const TREATMENT_SCENE_WIDTH = 3724
+const TREATMENT_SCENE_HEIGHT = 2866
+
+function isArmPosition(x: number, y: number) {
+  const sceneX = (x / 100) * TREATMENT_SCENE_WIDTH
+  const sceneY = (y / 100) * TREATMENT_SCENE_HEIGHT
+
+  // These bounds follow the palm and forearm shapes in treatment-scene.svg.
+  const inPalm =
+    ((sceneX - 2190.28) / 226.03) ** 2 + ((sceneY - 1689.02) / 269.05) ** 2 <= 1
+  const inForearm =
+    sceneX >= 2058.1 && sceneX <= 2328.714 && sceneY >= 1886.11
+
+  return inPalm || inForearm
+}
+
+function GrassSymbol({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox="0 0 166 194" aria-hidden="true">
+      <path
+        d="M1860.66 2641.43C1894.16 2645.18 1948.61 2596.92 1948.61 2560.99C1944.42 2536 1912.59 2487.89 1818.77 2495.39M1948.61 2560.99H1860.66"
+        transform="translate(-1800.78 -2469.9)"
+        fill="none"
+        stroke="#447B2A"
+        strokeLinecap="round"
+        strokeWidth="35.9776"
+      />
+    </svg>
+  )
+}
 
 type GameState = 'start' | 'ready' | 'riding' | 'fallen' | 'treatment'
 
@@ -9,6 +39,7 @@ type PlacedBandage = {
   id: number
   x: number
   y: number
+  size: number
   rotation: number
 }
 
@@ -60,6 +91,15 @@ export default function App() {
     if (!stage) return
 
     const bounds = stage.getBoundingClientRect()
+    if (
+      event.clientX < bounds.left ||
+      event.clientX > bounds.right ||
+      event.clientY < bounds.top ||
+      event.clientY > bounds.bottom
+    ) {
+      return
+    }
+
     const nextId = placedBandages.length
     const x = Math.max(0, Math.min(100, ((event.clientX - bounds.left) / bounds.width) * 100))
     const y = Math.max(0, Math.min(100, ((event.clientY - bounds.top) / bounds.height) * 100))
@@ -69,6 +109,7 @@ export default function App() {
         id: nextId,
         x,
         y,
+        size: isArmPosition(x, y) ? 5.2 : 3.2,
         rotation: ((nextId * 37) % 50) - 25,
       },
     ])
@@ -92,12 +133,15 @@ export default function App() {
       if (gameState === 'treatment') {
         if (placedBandages.length >= 10) return
         const nextId = placedBandages.length
+        const x = 59.7
+        const y = 77
         setPlacedBandages((current) => [
           ...current,
           {
             id: nextId,
-            x: 50,
-            y: 48,
+            x,
+            y,
+            size: isArmPosition(x, y) ? 5.2 : 3.2,
             rotation: ((nextId * 37) % 50) - 25,
           },
         ])
@@ -288,45 +332,25 @@ export default function App() {
 
       {gameState === 'treatment' && (
         <section className="treatment-screen" aria-label="Bandage Taylor's injured arm">
+          <div className="treatment-gutter treatment-gutter-left" aria-hidden="true">
+            <GrassSymbol className="treatment-gutter-mark treatment-gutter-mark-one" />
+            <GrassSymbol className="treatment-gutter-mark treatment-gutter-mark-two" />
+            <GrassSymbol className="treatment-gutter-mark treatment-gutter-mark-three" />
+            <GrassSymbol className="treatment-gutter-mark treatment-gutter-mark-four" />
+          </div>
+          <div className="treatment-gutter treatment-gutter-right" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <div className="treatment-stage">
-            <div className="treatment-ground" aria-hidden="true">
-              <div className="treatment-grass" />
-              <div className="treatment-sidewalk">
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-              <img
-                className="treatment-divider"
-                src={`${assetPath}/440b0.svg`}
-                alt=""
-                draggable={false}
-              />
-            </div>
-
             <img
-              className="treatment-bottom-bar"
-              src={`${assetPath}/12699.svg`}
+              className="treatment-background"
+              src={`${assetPath}/treatment-scene.svg`}
               alt=""
               draggable={false}
             />
-
-            <div className="treatment-arm" aria-hidden="true">
-              <img src={`${assetPath}/76796.svg`} alt="" draggable={false} />
-              <img
-                className="treatment-injury treatment-injury-outer"
-                src={`${assetPath}/468bd.svg`}
-                alt=""
-                draggable={false}
-              />
-              <img
-                className="treatment-injury treatment-injury-inner"
-                src={`${assetPath}/3cc40.svg`}
-                alt=""
-                draggable={false}
-              />
-            </div>
 
             {placedBandages.length === 0 && (
               <div className="tap-to-bandage" aria-hidden="true">
@@ -348,6 +372,7 @@ export default function App() {
                 style={{
                   left: `${bandage.x}%`,
                   top: `${bandage.y}%`,
+                  width: `${bandage.size}%`,
                   rotate: `${bandage.rotation}deg`,
                 }}
               />

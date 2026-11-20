@@ -391,113 +391,111 @@
   display: grid;
   overflow: hidden;
   place-items: center;
-  background: #111;
+  --scene-width: min(100vw, 129.94dvh);
+  --gutter: max(0px, calc(50vw - 64.97dvh));
+  background:
+    linear-gradient(to right, #439a1a 58.8%, #acacac 58.8%) center / var(--scene-width) 100%
+      no-repeat,
+    linear-gradient(to right, #439a1a 50%, #acacac 50%);
   pointer-events: none;
 }
 
 .treatment-stage {
   position: relative;
-  width: min(100vw, 66.72dvh);
-  aspect-ratio: 1295 / 1941;
+  width: var(--scene-width);
+  aspect-ratio: 3724 / 2866;
   overflow: hidden;
   container-type: inline-size;
+  z-index: 1;
 }
 
-.treatment-ground {
+.treatment-background {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: 40.85% 59.15%;
-}
-
-.treatment-grass {
-  background: #42b70c;
-}
-
-.treatment-sidewalk {
-  position: relative;
-  overflow: hidden;
-  background: #c4bcbc;
-}
-
-.treatment-sidewalk span {
-  position: absolute;
-  left: 0;
   width: 100%;
-  height: 2px;
-  background: #919191;
-  rotate: -0.6deg;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
 }
 
-.treatment-sidewalk span:nth-child(1) {
-  top: 12.9%;
-}
-
-.treatment-sidewalk span:nth-child(2) {
-  top: 34.2%;
-}
-
-.treatment-sidewalk span:nth-child(3) {
-  top: 55.7%;
-}
-
-.treatment-sidewalk span:nth-child(4) {
-  top: 77.3%;
-}
-
-.treatment-divider {
+.treatment-gutter {
   position: absolute;
-  right: -72%;
-  top: 50%;
-  width: 149.9%;
-  height: auto;
-  translate: 0 -50%;
-  rotate: 90deg;
-}
-
-.treatment-bottom-bar {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 4;
-  width: 96.5%;
-  height: 12.93%;
-  rotate: 180deg;
-}
-
-.treatment-arm {
-  position: absolute;
-  left: 43.6%;
-  top: 53.1%;
-  width: 17.4%;
-  height: 39.46%;
-}
-
-.treatment-arm > img:first-child {
-  position: absolute;
-  left: -0.18%;
   top: 0;
-  display: block;
-  width: 124.14%;
-  height: 107.05%;
+  bottom: 0;
+  z-index: 2;
+  display: none;
+  pointer-events: none;
 }
 
-.treatment-injury {
+.treatment-gutter-left {
+  left: 0;
+  width: var(--gutter);
+}
+
+.treatment-gutter-right {
+  right: 0;
+  width: var(--gutter);
+}
+
+.treatment-gutter-mark {
   position: absolute;
-  height: auto;
-  rotate: -90.92deg;
+  width: 5.79dvh;
+  height: 6.77dvh;
+  transform: translate(-50%, -50%);
 }
 
-.treatment-injury-outer {
-  left: 20.8%;
-  top: 62.45%;
-  width: 58.5%;
+.treatment-gutter-mark-one {
+  left: 30%;
+  top: 18%;
 }
 
-.treatment-injury-inner {
-  left: 27.8%;
-  top: 63.5%;
-  width: 45.4%;
+.treatment-gutter-mark-two {
+  left: 72%;
+  top: 40%;
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.treatment-gutter-mark-three {
+  left: 25%;
+  top: 66%;
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.treatment-gutter-mark-four {
+  left: 69%;
+  top: 86%;
+}
+
+.treatment-gutter-right span {
+  position: absolute;
+  left: -5.24dvh;
+  width: calc(var(--gutter) + 5.24dvh);
+  height: 1.25dvh;
+  border-radius: 999px;
+  background: #929292;
+  translate: 0 -50%;
+}
+
+.treatment-gutter-right span:nth-child(1) {
+  top: 7.73%;
+}
+
+.treatment-gutter-right span:nth-child(2) {
+  top: 33.09%;
+}
+
+.treatment-gutter-right span:nth-child(3) {
+  top: 60.47%;
+}
+
+.treatment-gutter-right span:nth-child(4) {
+  top: 86.62%;
+}
+
+@media (min-aspect-ratio: 3 / 2) {
+  .treatment-gutter {
+    display: block;
+  }
 }
 
 .tap-to-bandage {
@@ -526,7 +524,6 @@
 .placed-bandage {
   position: absolute;
   z-index: 8;
-  width: 6.8%;
   height: auto;
   translate: -50% -50%;
   filter: drop-shadow(0 5px 2px rgb(0 0 0 / 18%));
