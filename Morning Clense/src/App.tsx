@@ -118,7 +118,7 @@ export default function App() {
         <h1 className="opening-title">
           MORNING
           <br />
-          CLENSE
+          CLEANSE
         </h1>
 
         <div className="opening-turtle" aria-hidden="true">

@@ -14,7 +14,7 @@ type Game = {
 const games: Game[] = [
   {
     id: "safety",
-    label: "SAFTEY CHECK",
+    label: "SAFETY CHECK",
     art: (
       <span className="game-art safety-art" aria-hidden="true">
         <img src={`${ASSETS}/ee4d3.svg`} alt="" />
@@ -29,7 +29,7 @@ const games: Game[] = [
   },
   {
     id: "dress",
-    label: "Dress Up",
+    label: "DRESS UP",
     art: (
       <span className="game-art dress-art" aria-hidden="true">
         <img src={`${ASSETS}/70cd4.svg`} alt="" />
@@ -49,7 +49,7 @@ const games: Game[] = [
   },
   {
     id: "morning",
-    label: "MORNING CLENSE",
+    label: "MORNING CLEANSE",
     art: (
       <span className="game-art morning-art" aria-hidden="true">
         <img src={`${ASSETS}/243f1.png`} alt="" />

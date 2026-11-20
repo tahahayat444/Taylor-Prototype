@@ -154,6 +154,8 @@
   overflow: hidden;
   background: #f0edd9;
   isolation: isolate;
+  transform: scale(1.1);
+  transform-origin: center;
 }
 
 .rug-fringe {
@@ -260,140 +262,6 @@
 
 .phone.is-wiggling {
   animation: phone-wiggle 560ms ease-in-out;
-}
-
-.menu-trigger {
-  position: absolute;
-  z-index: 10;
-  top: 5%;
-  right: 4%;
-  width: 14%;
-  aspect-ratio: 2 / 1;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.menu-trigger-layer {
-  position: absolute;
-  width: 94%;
-  height: 72%;
-}
-
-.menu-trigger-green {
-  left: 0;
-  bottom: 0;
-  background: #397e36;
-}
-
-.menu-trigger-yellow {
-  top: 0;
-  right: 0;
-  background: #fab514;
-}
-
-.menu-trigger-purple {
-  top: 14%;
-  left: 3%;
-  display: grid;
-  place-items: center;
-  background: #6c3eae;
-  color: #fff;
-  font-family: "Cal Sans:Regular", Arial, sans-serif;
-  font-size: clamp(10px, 1.7vw, 27px);
-  font-weight: 400;
-  line-height: normal;
-}
-
-.menu-trigger:hover .menu-trigger-purple,
-.menu-trigger:focus-visible .menu-trigger-purple {
-  background: #7948bb;
-}
-
-.menu-trigger:focus-visible {
-  outline: clamp(2px, 0.25vw, 4px) solid #000;
-  outline-offset: 4px;
-}
-
-.menu-backdrop {
-  position: absolute;
-  z-index: 20;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgb(0 0 0 / 38%);
-}
-
-.menu-dialog {
-  position: relative;
-  width: min(58%, 700px);
-  aspect-ratio: 2 / 1;
-}
-
-.menu-dialog-green,
-.menu-dialog-yellow,
-.menu-dialog-front {
-  position: absolute;
-  width: 92%;
-  height: 78%;
-}
-
-.menu-dialog-green {
-  left: 0;
-  bottom: 0;
-  background: #397e36;
-}
-
-.menu-dialog-yellow {
-  top: 0;
-  right: 0;
-  background: #fab514;
-}
-
-.menu-dialog-front {
-  top: 11%;
-  left: 4%;
-  display: grid;
-  align-content: center;
-  gap: clamp(12px, 1.4vw, 22px);
-  padding: clamp(14px, 2.2vw, 34px);
-  background: #6c3eae;
-}
-
-.menu-dialog h1 {
-  margin: 0;
-  color: #fff;
-  font-family: "Cal Sans:Regular", Arial, sans-serif;
-  font-size: clamp(36px, 6.5vw, 100px);
-  font-weight: 400;
-  line-height: 0.8;
-  text-align: center;
-}
-
-.menu-actions {
-  display: flex;
-  justify-content: center;
-  gap: clamp(10px, 1.5vw, 24px);
-}
-
-.menu-actions button {
-  min-width: 32%;
-  padding: clamp(8px, 1vw, 15px);
-  border: clamp(2px, 0.25vw, 4px) solid #fff;
-  background: transparent;
-  color: #fff;
-  font-family: "Cal Sans:Regular", Arial, sans-serif;
-  font-size: clamp(13px, 1.6vw, 24px);
-  font-weight: 400;
-  cursor: pointer;
-}
-
-.menu-actions button:hover,
-.menu-actions button:focus-visible {
-  background: #fff;
-  color: #6c3eae;
-  outline: none;
 }
 
 @keyframes phone-wiggle {

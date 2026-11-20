@@ -120,18 +120,11 @@ export default function App() {
   const [started, setStarted] = useState(false);
   const [sortedIds, setSortedIds] = useState<string[]>([]);
   const [phoneWiggling, setPhoneWiggling] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleObject = (id: string) => {
     setSortedIds((current) =>
       current.includes(id) ? current.filter((itemId) => itemId !== id) : [...current, id],
     );
-  };
-
-  const restartGame = () => {
-    setSortedIds([]);
-    setPhoneWiggling(false);
-    setMenuOpen(false);
   };
 
   if (!started) {
@@ -186,43 +179,6 @@ export default function App() {
         >
           <img src={asset("69ea2")} alt="" />
         </button>
-
-        <button
-          type="button"
-          className="menu-trigger"
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open menu"
-        >
-          <span className="menu-trigger-layer menu-trigger-green" />
-          <span className="menu-trigger-layer menu-trigger-yellow" />
-          <span className="menu-trigger-layer menu-trigger-purple">MENU</span>
-        </button>
-
-        {menuOpen && (
-          <div className="menu-backdrop" role="presentation" onClick={() => setMenuOpen(false)}>
-            <div
-              className="menu-dialog"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="menu-title"
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="menu-dialog-green" />
-              <div className="menu-dialog-yellow" />
-              <div className="menu-dialog-front">
-                <h1 id="menu-title">MENU</h1>
-                <div className="menu-actions">
-                  <button type="button" onClick={() => setMenuOpen(false)}>
-                    RESUME
-                  </button>
-                  <button type="button" onClick={restartGame}>
-                    RESTART
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </section>
     </main>
   );
