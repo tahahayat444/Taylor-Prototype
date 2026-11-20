@@ -48,6 +48,7 @@ function Choice({ item, onSelect }: { item: Item; onSelect: (item: Item) => void
         className="choice choice-sock"
         type="button"
         aria-label="Put the sock on Taylor"
+        data-click-sound="incorrect"
         onClick={() => onSelect(item)}
       >
         <img src={asset("b24ef")} alt="" />
@@ -60,6 +61,7 @@ function Choice({ item, onSelect }: { item: Item; onSelect: (item: Item) => void
       className={`choice choice-${item}`}
       type="button"
       aria-label={`Put the ${item} on Taylor`}
+      data-click-sound={item === "helmet" ? "yay" : "incorrect"}
       onClick={() => onSelect(item)}
     >
       <img src={item === "helmet" ? asset("d34f7") : asset("07960")} alt="" />

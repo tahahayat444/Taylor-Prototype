@@ -162,6 +162,7 @@ export default function App() {
                 } as CSSProperties
               }
               onClick={() => toggleObject(object.id)}
+              data-click-sound="yay"
               aria-label={`${isSorted ? "Take out" : "Put away"} ${object.name}`}
               aria-pressed={isSorted}
             >
@@ -175,6 +176,7 @@ export default function App() {
           className={`phone ${phoneWiggling ? "is-wiggling" : ""}`}
           onClick={() => setPhoneWiggling(true)}
           onAnimationEnd={() => setPhoneWiggling(false)}
+          data-click-sound="incorrect"
           aria-label="Wiggle phone"
         >
           <img src={asset("69ea2")} alt="" />

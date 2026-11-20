@@ -92,7 +92,26 @@
       let appsBasePathPromise;
       let buttonAudioContext;
 
-      function playButtonBloop() {
+      function playTone(context, frequency, endFrequency, startTime, duration, peakVolume) {
+        const oscillator = context.createOscillator();
+        const volume = context.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+        if (endFrequency !== frequency) {
+          oscillator.frequency.exponentialRampToValueAtTime(endFrequency, startTime + duration);
+        }
+        volume.gain.setValueAtTime(0.0001, startTime);
+        volume.gain.exponentialRampToValueAtTime(peakVolume, startTime + 0.012);
+        volume.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        oscillator.connect(volume);
+        volume.connect(context.destination);
+        oscillator.start(startTime);
+        oscillator.stop(startTime + duration + 0.01);
+      }
+
+      function playButtonSound(sound) {
         const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
         if (!AudioContextConstructor) {
           console.error("Web Audio is unavailable; button sounds cannot play.");
@@ -101,30 +120,27 @@
 
         buttonAudioContext ??= new AudioContextConstructor();
 
-        function playTone() {
+        function playSound() {
           const now = buttonAudioContext.currentTime;
-          const oscillator = buttonAudioContext.createOscillator();
-          const volume = buttonAudioContext.createGain();
 
-          oscillator.type = "sine";
-          oscillator.frequency.setValueAtTime(640, now);
-          oscillator.frequency.exponentialRampToValueAtTime(360, now + 0.12);
-          volume.gain.setValueAtTime(0.0001, now);
-          volume.gain.exponentialRampToValueAtTime(0.12, now + 0.012);
-          volume.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
-
-          oscillator.connect(volume);
-          volume.connect(buttonAudioContext.destination);
-          oscillator.start(now);
-          oscillator.stop(now + 0.16);
+          if (sound === "incorrect") {
+            playTone(buttonAudioContext, 480, 330, now, 0.14, 0.07);
+            playTone(buttonAudioContext, 390, 280, now + 0.11, 0.15, 0.06);
+          } else if (sound === "yay") {
+            [523, 659, 784].forEach((frequency, index) => {
+              playTone(buttonAudioContext, frequency, frequency, now + index * 0.1, 0.13, 0.08);
+            });
+          } else {
+            playTone(buttonAudioContext, 640, 360, now, 0.15, 0.12);
+          }
         }
 
         if (buttonAudioContext.state === "suspended") {
-          buttonAudioContext.resume().then(playTone).catch((error) => {
+          buttonAudioContext.resume().then(playSound).catch((error) => {
             console.error("Could not resume button sound playback.", error);
           });
         } else {
-          playTone();
+          playSound();
         }
       }
 
@@ -133,15 +149,16 @@
           "click",
           (event) => {
             const target = event.target;
-            if (
-              !target ||
-              typeof target.closest !== "function" ||
-              !target.closest("button, [role='button']")
-            ) {
+            if (!target || typeof target.closest !== "function") {
               return;
             }
 
-            playButtonBloop();
+            const button = target.closest("button, [role='button']");
+            if (!button) {
+              return;
+            }
+
+            playButtonSound(button.getAttribute("data-click-sound"));
           },
           true,
         );
