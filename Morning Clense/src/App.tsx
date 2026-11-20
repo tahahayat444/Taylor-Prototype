@@ -5,6 +5,12 @@ type Point = {
   y: number;
 };
 
+type BrushingAudio = {
+  context: AudioContext;
+  source: AudioBufferSourceNode;
+  gain: GainNode;
+};
+
 const ASSETS = `${import.meta.env.BASE_URL}assets`;
 const TOOTHBRUSH = `${ASSETS}/game/toothbrush.png`;
 const BUBBLES = `${ASSETS}/game/bubbles.png`;
@@ -23,11 +29,31 @@ const TEETH_STATES = [
   `${ASSETS}/6fd38.svg`,
 ];
 
+function playFoamBubble(context: AudioContext) {
+  const now = context.currentTime;
+  const duration = 0.1 + Math.random() * 0.04;
+  const oscillator = context.createOscillator();
+  const volume = context.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(620 + Math.random() * 180, now);
+  oscillator.frequency.exponentialRampToValueAtTime(280 + Math.random() * 100, now + duration);
+  volume.gain.setValueAtTime(0.0001, now);
+  volume.gain.exponentialRampToValueAtTime(0.03, now + 0.01);
+  volume.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+  oscillator.connect(volume);
+  volume.connect(context.destination);
+  oscillator.start(now);
+  oscillator.stop(now + duration + 0.01);
+}
+
 export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const gameRef = useRef<HTMLElement>(null);
   const teethRef = useRef<HTMLDivElement>(null);
   const bubbleTimer = useRef<number | undefined>(undefined);
+  const brushingAudioRef = useRef<BrushingAudio | null>(null);
   const draggingRef = useRef(false);
   const lastBrushPoint = useRef<Point | null>(null);
   const [brushPosition, setBrushPosition] = useState<Point | null>(null);
@@ -37,8 +63,92 @@ export default function App() {
   const isFullyClean = cleaningProgress >= 0.9;
 
   useEffect(() => {
-    return () => window.clearTimeout(bubbleTimer.current);
+    return () => {
+      window.clearTimeout(bubbleTimer.current);
+      const audio = brushingAudioRef.current;
+      if (audio) {
+        audio.source.stop();
+        void audio.context.close().catch((error) => {
+          console.error("Could not close the brushing sound.", error);
+        });
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    let audio = brushingAudioRef.current;
+    if (!isBrushing) {
+      if (audio) {
+        const now = audio.context.currentTime;
+        audio.gain.gain.cancelScheduledValues(now);
+        audio.gain.gain.setTargetAtTime(0, now, 0.025);
+      }
+      return;
+    }
+
+    if (!audio) {
+      const context = new AudioContext();
+      const buffer = context.createBuffer(1, context.sampleRate, context.sampleRate);
+      const samples = buffer.getChannelData(0);
+      for (let index = 0; index < samples.length; index += 1) {
+        samples[index] = (Math.random() * 2 - 1) * 0.5;
+      }
+
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+
+      const highPass = context.createBiquadFilter();
+      highPass.type = "highpass";
+      highPass.frequency.value = 300;
+
+      const lowPass = context.createBiquadFilter();
+      lowPass.type = "lowpass";
+      lowPass.frequency.value = 1800;
+
+      const gain = context.createGain();
+      gain.gain.value = 0;
+      source.connect(highPass);
+      highPass.connect(lowPass);
+      lowPass.connect(gain);
+      gain.connect(context.destination);
+      source.start();
+
+      audio = { context, source, gain };
+      brushingAudioRef.current = audio;
+    }
+
+    let cancelled = false;
+    let bubbleInterval: number | undefined;
+
+    const startSound = () => {
+      if (cancelled) return;
+      const now = audio.context.currentTime;
+      audio.gain.gain.cancelScheduledValues(now);
+      audio.gain.gain.setTargetAtTime(0.024, now, 0.025);
+      playFoamBubble(audio.context);
+      bubbleInterval = window.setInterval(() => playFoamBubble(audio.context), 260);
+    };
+
+    if (audio.context.state === "suspended") {
+      void audio.context.resume().then(startSound).catch((error) => {
+        console.error("Could not resume the brushing sound.", error);
+      });
+    } else {
+      startSound();
+    }
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(bubbleInterval);
+      const currentAudio = brushingAudioRef.current;
+      if (currentAudio) {
+        const now = currentAudio.context.currentTime;
+        currentAudio.gain.gain.cancelScheduledValues(now);
+        currentAudio.gain.gain.setTargetAtTime(0, now, 0.025);
+      }
+    };
+  }, [isBrushing]);
 
   useEffect(() => {
     if (!isFullyClean) return;
