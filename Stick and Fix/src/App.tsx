@@ -206,26 +206,14 @@ export default function App() {
         draggable={false}
       />
 
-      {gameState !== 'treatment' && (
+      {gameState !== 'treatment' && gameState !== 'fallen' && (
         <header className="game-header">
-          <button
-            className="menu-sign"
-            type="button"
-            onClick={(event) => event.stopPropagation()}
-            onKeyDown={(event) => event.stopPropagation()}
-            aria-label="Menu"
-          >
-            <span>MENU</span>
-          </button>
-
-          {gameState !== 'fallen' && (
-            <div className="progress-card" aria-label={`${taps} of ${TOTAL_TAPS} pedals`}>
-              <span>FINISH</span>
-              <div className="progress-track">
-                <div className="progress-fill" style={{ width: `${progress * 100}%` }} />
-              </div>
+          <div className="progress-card" aria-label={`${taps} of ${TOTAL_TAPS} pedals`}>
+            <span>FINISH</span>
+            <div className="progress-track">
+              <div className="progress-fill" style={{ width: `${progress * 100}%` }} />
             </div>
-          )}
+          </div>
         </header>
       )}
 
@@ -336,6 +324,7 @@ export default function App() {
               alt=""
               draggable={false}
             />
+            <span className="injury-sound-zone" data-click-sound="yay" aria-hidden="true" />
 
             {placedBandages.length === 0 && (
               <div className="tap-to-bandage" aria-hidden="true">

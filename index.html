@@ -153,12 +153,12 @@
               return;
             }
 
-            const button = target.closest("button, [role='button']");
-            if (!button) {
+            const soundTarget = target.closest("[data-click-sound], button, [role='button']");
+            if (!soundTarget) {
               return;
             }
 
-            playButtonSound(button.getAttribute("data-click-sound"));
+            playButtonSound(soundTarget.getAttribute("data-click-sound"));
           },
           true,
         );

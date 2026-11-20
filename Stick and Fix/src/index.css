@@ -245,7 +245,7 @@
   z-index: 10;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
 }
 
@@ -255,45 +255,6 @@
   background: rgb(255 255 255 / 85%);
   box-shadow: 0 8px 0 rgb(34 85 50 / 15%);
   backdrop-filter: blur(8px);
-}
-
-.menu-sign {
-  position: relative;
-  width: clamp(145px, 24vw, 260px);
-  aspect-ratio: 2.73;
-  border: 0;
-  padding: 0;
-  color: white;
-  background: #397e36;
-  box-shadow:
-    clamp(-5px, -0.8vw, -9px) clamp(7px, 1.2vw, 13px) 0 #fab514,
-    clamp(5px, 0.8vw, 9px) clamp(-5px, -0.8vw, -9px) 0 #6c3eae;
-  cursor: pointer;
-  transition: transform 120ms ease;
-}
-
-.menu-sign span {
-  display: grid;
-  height: 100%;
-  place-items: center;
-  font-family: 'Cal Sans:Regular', sans-serif;
-  font-size: clamp(2rem, 5.3vw, 4.5rem);
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.menu-sign:hover {
-  transform: translateY(-2px);
-}
-
-.menu-sign:active {
-  transform: translateY(2px);
-}
-
-.menu-sign:focus-visible {
-  outline: 4px solid white;
-  outline-offset: 4px;
 }
 
 .progress-card {
@@ -548,6 +509,17 @@
   animation: bandage-callout 850ms ease-in-out infinite alternate;
 }
 
+.injury-sound-zone {
+  position: absolute;
+  z-index: 9;
+  top: 72.69%;
+  left: 58.34%;
+  width: 2.69%;
+  height: 8.57%;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
 .placed-bandage {
   position: absolute;
   z-index: 8;
@@ -706,10 +678,6 @@
 @media (max-width: 600px) {
   .game-header {
     align-items: stretch;
-  }
-
-  .menu-sign {
-    width: 138px;
   }
 
   .progress-card {
