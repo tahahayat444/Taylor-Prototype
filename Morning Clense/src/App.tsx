@@ -288,7 +288,7 @@ export default function App() {
       {!brushPosition && (
         <div className="tap-hint" aria-hidden="true">
           <span className="tap-ring" />
-          <span>Tap to start brushing</span>
+          <span>Touch and hold to start brushing</span>
         </div>
       )}
     </main>
