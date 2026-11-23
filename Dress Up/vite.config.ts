@@ -62,9 +62,6 @@ type FigmaSiteConfiguration = {
   openGraph?: {
     image?: string;
   };
-  analytics?: {
-    googleAnalyticsId?: string;
-  };
   customScripts?: {
     headStart?: string;
     headEnd?: string;
@@ -95,7 +92,6 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
   const favicon = config.icons?.icon ?? "/favicon.png";
   const socialImage = config.openGraph?.image ?? "";
   const language = sanitizeHtmlValue(config.language) || "en";
-  const googleAnalyticsId = sanitizeHtmlValue(config.analytics?.googleAnalyticsId);
   const headStart = config.customScripts?.headStart ?? "";
   const headEnd = config.customScripts?.headEnd ?? "";
   const bodyStart = config.customScripts?.bodyStart ?? "";
@@ -179,29 +175,6 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
             {
               tag: "meta",
               attrs: { name: "twitter:image", content: socialImage },
-              injectTo: "head",
-            },
-          );
-        }
-
-        if (googleAnalyticsId) {
-          tags.push(
-            {
-              tag: "script",
-              attrs: {
-                async: true,
-                src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
-              },
-              injectTo: "head",
-            },
-            {
-              tag: "script",
-              children: `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', ${JSON.stringify(googleAnalyticsId)});
-`,
               injectTo: "head",
             },
           );
